@@ -17,8 +17,10 @@ def generate_launch_description():
   world_file = 'table.world'
   world_path = os.path.join(pkg_install_path, 'worlds', world_file)
    
-  # Obtenemos la ruta de la capeta models que es donde se encuentra
-  # la información del modelo que es empleado en nuestro archivo world
+  # Obtenemos la ruta de la capeta models que almacena la informacion
+  # de los modelos de los objetos incluidos en nuestro archivo world,
+  # y la guardamos en la variable de entorno GAZEBO_MODEL_PATH, que
+  # contiene las rutas donde los busca Gazebo. 
   gazebo_models_path = os.path.join(pkg_install_path, 'models')
   os.environ["GAZEBO_MODEL_PATH"] = gazebo_models_path
    
@@ -38,7 +40,8 @@ def generate_launch_description():
     PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')),
     )
  
-  # Devolvemos un objeto LaunchDescription con las acciones que queremos realizar.
+  # Devolvemos un objeto LaunchDescription con las acciones que queremos 
+  # realizar.
   return LaunchDescription([
     start_gazebo_server_cmd,
     start_gazebo_client_cmd
